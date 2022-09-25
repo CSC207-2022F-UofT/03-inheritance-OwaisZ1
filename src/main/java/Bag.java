@@ -169,5 +169,6 @@ public abstract class Bag {
      */
     public abstract void enhance();
 
-    public abstract int getNumberOfStraps();
+
+
 }
