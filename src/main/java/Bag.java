@@ -13,8 +13,10 @@ public abstract class Bag {
      *       - an int named capacity
      *       - an array of Strings named contents
      */
-
-
+    private String color;
+    private int numberOfContents;
+    private int capacity;
+    private String[] contents;
 
 
     /*
@@ -26,6 +28,14 @@ public abstract class Bag {
      * be empty (e.g. numberOfContents is 0 and an empty String array for
      * its contents.)
      */
+    public void first_method(String color, int capacity){
+        this.color = color;
+        this.capacity = capacity;
+        this.numberOfContents = 0;
+        this.contents = new String[]{};
+
+    }
+
 
 
 
@@ -37,6 +47,15 @@ public abstract class Bag {
      *           - getNumberOfContents
      *           - getCapacity
      */
+    public String getColor(){
+        return this.color;
+    }
+    public int getNumberOfContents(){
+        return this.numberOfContents;
+    }
+    public int getCapacity(){
+        return this.capacity;
+    }
 
 
 
@@ -47,9 +66,9 @@ public abstract class Bag {
      */
 
 
-
-
-
+    public void setColor(String color){
+        this.color = color;
+    }
     /*
      * TODO: Create a method called addItem that takes in a String
      *       representing an item in the Bag.
@@ -60,6 +79,21 @@ public abstract class Bag {
      *       This method should return true if the item was added
      *       and false otherwise.
      */
+    public boolean addItem(String repitem){
+        if (this.capacity > this.numberOfContents){
+            int oldSize = this.capacity;
+            String[] newOne = new String[oldSize+1];
+            for (int i=0;i<oldSize;i++){
+                newOne[i] = this.contents[i];
+            }
+            newOne[oldSize] = repitem;
+            this.numberOfContents += 1;
+            this.capacity -= 1;
+            return true;
+        }
+        return false;
+
+    }
 
 
 
@@ -75,6 +109,20 @@ public abstract class Bag {
      *
      * @return
      */
+    public String popItem(){
+        if (this.numberOfContents == 0){
+            return null;
+        }
+        String toReturn = this.contents[this.capacity-1];
+        int oldLength = this.capacity;
+        String[] rePlacement = new String[oldLength - 1];
+        for (int i=0; i<oldLength - 1;i++){
+            rePlacement[i] = this.contents[i];
+        }
+        this.contents = rePlacement;
+        return toReturn;
+
+    }
 
 
 
@@ -87,6 +135,12 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
+        this.capacity += 1;
+        String[] newReplacement = new String[this.capacity + 1];
+        for (int i=0;i<this.capacity;i++){
+            newReplacement[i] = this.contents[i];
+        }
+        this.contents = newReplacement;
 
     }
 
