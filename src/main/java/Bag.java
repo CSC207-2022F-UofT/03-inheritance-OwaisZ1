@@ -168,4 +168,6 @@ public abstract class Bag {
      * We recommend you look at HandBag.java first.
      */
     public abstract void enhance();
+
+    public abstract int getNumberOfStraps();
 }
